@@ -1,0 +1,594 @@
+[
+  {
+    "timestamp": "2026-09-06T22:27:48.825563+00:00",
+    "method": "GET",
+    "path": "/health",
+    "status_code": 200,
+    "response": {
+      "status": "ok",
+      "tasks_count": 4
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.830763+00:00",
+    "method": "GET",
+    "path": "/tasks",
+    "status_code": 200,
+    "response": [
+      {
+        "id": 1,
+        "task_name": "Buy milk",
+        "completed": false
+      },
+      {
+        "id": 2,
+        "task_name": "Walk the dogs",
+        "completed": false
+      },
+      {
+        "id": 3,
+        "task_name": "Read a book",
+        "completed": false
+      },
+      {
+        "id": 4,
+        "task_name": "Write a blog post",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.840720+00:00",
+    "method": "POST",
+    "path": "/tasks",
+    "status_code": 201,
+    "response": {
+      "id": 5,
+      "task_name": "Learn FastAPI",
+      "completed": false
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.847473+00:00",
+    "method": "PUT",
+    "path": "/tasks/5",
+    "status_code": 200,
+    "response": {
+      "id": 5,
+      "task_name": "Learn FastAPI",
+      "completed": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.853906+00:00",
+    "method": "GET",
+    "path": "/tasks/5",
+    "status_code": 200,
+    "response": {
+      "id": 5,
+      "task_name": "Learn FastAPI",
+      "completed": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.858914+00:00",
+    "method": "DELETE",
+    "path": "/tasks/5",
+    "status_code": 204,
+    "response": null
+  },
+  {
+    "timestamp": "2026-09-06T22:27:48.864686+00:00",
+    "method": "GET",
+    "path": "/tasks/5",
+    "status_code": 404,
+    "response": {
+      "detail": "Task not found"
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:01.325934+00:00",
+    "method": "GET",
+    "path": "/",
+    "status_code": 200,
+    "response": {
+      "name": "CRUD Tasks API",
+      "description": "An in-memory API for creating, reading, updating, and deleting tasks.",
+      "endpoints": {
+        "GET /health": "Check API health and task count",
+        "GET /tasks": "List all tasks",
+        "GET /tasks/{task_id}": "Get one task",
+        "POST /tasks": "Create a task",
+        "PUT /tasks/{task_id}": "Update a task",
+        "DELETE /tasks/{task_id}": "Delete a task"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:01.353304+00:00",
+    "method": "GET",
+    "path": "/",
+    "status_code": 200,
+    "response": {
+      "name": "CRUD Tasks API",
+      "description": "An in-memory API for creating, reading, updating, and deleting tasks.",
+      "endpoints": {
+        "GET /health": "Check API health and task count",
+        "GET /tasks": "List all tasks",
+        "GET /tasks/{task_id}": "Get one task",
+        "POST /tasks": "Create a task",
+        "PUT /tasks/{task_id}": "Update a task",
+        "DELETE /tasks/{task_id}": "Delete a task"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:24.184066+00:00",
+    "method": "GET",
+    "path": "/",
+    "status_code": 200,
+    "response": {
+      "name": "CRUD Tasks API",
+      "description": "An in-memory API for creating, reading, updating, and deleting tasks.",
+      "endpoints": {
+        "GET /health": "Check API health and task count",
+        "GET /tasks": "List all tasks",
+        "GET /tasks/{task_id}": "Get one task",
+        "POST /tasks": "Create a task",
+        "PUT /tasks/{task_id}": "Update a task",
+        "DELETE /tasks/{task_id}": "Delete a task"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:33.432381+00:00",
+    "method": "GET",
+    "path": "/docs",
+    "status_code": 200,
+    "response": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css\">\n    <link rel=\"shortcut icon\" href=\"https://fastapi.tiangolo.com/img/favicon.png\">\n    <title>CRUD Tasks API - Swagger UI</title>\n    </head>\n    <body>\n    <div id=\"swagger-ui\">\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js\"></script>\n    <!-- `SwaggerUIBundle` is now available on the page -->\n    <script>\n    const ui = SwaggerUIBundle({\n        url: '/openapi.json',\n    \"dom_id\": \"#swagger-ui\",\n\"layout\": \"BaseLayout\",\n\"deepLinking\": true,\n\"showExtensions\": true,\n\"showCommonExtensions\": true,\noauth2RedirectUrl: window.location.origin + '/docs/oauth2-redirect',\n    presets: [\n        SwaggerUIBundle.presets.apis,\n        SwaggerUIBundle.SwaggerUIStandalonePreset\n        ],\n    })\n    </script>\n    </body>\n    </html>\n    "
+  },
+  {
+    "timestamp": "2026-09-06T22:29:34.107728+00:00",
+    "method": "GET",
+    "path": "/openapi.json",
+    "status_code": 200,
+    "response": {
+      "openapi": "3.1.0",
+      "info": {
+        "title": "CRUD Tasks API",
+        "description": "A simple in-memory CRUD API for managing tasks.",
+        "version": "1.0.0"
+      },
+      "paths": {
+        "/": {
+          "get": {
+            "summary": "Describe the API",
+            "operationId": "describe_api__get",
+            "responses": {
+              "200": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/health": {
+          "get": {
+            "summary": "Check API health",
+            "operationId": "check_health_health_get",
+            "responses": {
+              "200": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/tasks": {
+          "get": {
+            "summary": "List all tasks",
+            "operationId": "list_tasks_tasks_get",
+            "responses": {
+              "200": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      },
+                      "type": "array",
+                      "title": "Response List Tasks Tasks Get"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "post": {
+            "summary": "Create a task",
+            "operationId": "create_task_tasks_post",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/TaskCreate"
+                  }
+                }
+              },
+              "required": true
+            },
+            "responses": {
+              "201": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Task"
+                    }
+                  }
+                }
+              },
+              "422": {
+                "description": "Validation Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/HTTPValidationError"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/tasks/{task_id}": {
+          "get": {
+            "summary": "Get a task",
+            "operationId": "get_task_tasks__task_id__get",
+            "parameters": [
+              {
+                "name": "task_id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "title": "Task Id"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Task"
+                    }
+                  }
+                }
+              },
+              "422": {
+                "description": "Validation Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/HTTPValidationError"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "put": {
+            "summary": "Update a task",
+            "operationId": "update_task_tasks__task_id__put",
+            "parameters": [
+              {
+                "name": "task_id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "title": "Task Id"
+                }
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/TaskUpdate"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Successful Response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Task"
+                    }
+                  }
+                }
+              },
+              "422": {
+                "description": "Validation Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/HTTPValidationError"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete a task",
+            "operationId": "delete_task_tasks__task_id__delete",
+            "parameters": [
+              {
+                "name": "task_id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "title": "Task Id"
+                }
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "Successful Response"
+              },
+              "422": {
+                "description": "Validation Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/HTTPValidationError"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "HTTPValidationError": {
+            "properties": {
+              "detail": {
+                "items": {
+                  "$ref": "#/components/schemas/ValidationError"
+                },
+                "type": "array",
+                "title": "Detail"
+              }
+            },
+            "type": "object",
+            "title": "HTTPValidationError"
+          },
+          "Task": {
+            "properties": {
+              "id": {
+                "type": "integer",
+                "title": "Id"
+              },
+              "task_name": {
+                "type": "string",
+                "title": "Task Name"
+              },
+              "completed": {
+                "type": "boolean",
+                "title": "Completed",
+                "default": false
+              }
+            },
+            "type": "object",
+            "required": [
+              "id",
+              "task_name"
+            ],
+            "title": "Task"
+          },
+          "TaskCreate": {
+            "properties": {
+              "task_name": {
+                "type": "string",
+                "title": "Task Name"
+              },
+              "completed": {
+                "type": "boolean",
+                "title": "Completed",
+                "default": false
+              }
+            },
+            "type": "object",
+            "required": [
+              "task_name"
+            ],
+            "title": "TaskCreate"
+          },
+          "TaskUpdate": {
+            "properties": {
+              "task_name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Task Name"
+              },
+              "completed": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Completed"
+              }
+            },
+            "type": "object",
+            "title": "TaskUpdate"
+          },
+          "ValidationError": {
+            "properties": {
+              "loc": {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                },
+                "type": "array",
+                "title": "Location"
+              },
+              "msg": {
+                "type": "string",
+                "title": "Message"
+              },
+              "type": {
+                "type": "string",
+                "title": "Error Type"
+              },
+              "input": {
+                "title": "Input"
+              },
+              "ctx": {
+                "type": "object",
+                "title": "Context"
+              }
+            },
+            "type": "object",
+            "required": [
+              "loc",
+              "msg",
+              "type"
+            ],
+            "title": "ValidationError"
+          }
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:41.980223+00:00",
+    "method": "GET",
+    "path": "/",
+    "status_code": 200,
+    "response": {
+      "name": "CRUD Tasks API",
+      "description": "An in-memory API for creating, reading, updating, and deleting tasks.",
+      "endpoints": {
+        "GET /health": "Check API health and task count",
+        "GET /tasks": "List all tasks",
+        "GET /tasks/{task_id}": "Get one task",
+        "POST /tasks": "Create a task",
+        "PUT /tasks/{task_id}": "Update a task",
+        "DELETE /tasks/{task_id}": "Delete a task"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:29:55.076750+00:00",
+    "method": "GET",
+    "path": "/health",
+    "status_code": 200,
+    "response": {
+      "status": "ok",
+      "tasks_count": 4
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:30:13.656216+00:00",
+    "method": "GET",
+    "path": "/tasks",
+    "status_code": 200,
+    "response": [
+      {
+        "id": 1,
+        "task_name": "Buy milk",
+        "completed": false
+      },
+      {
+        "id": 2,
+        "task_name": "Walk the dogs",
+        "completed": false
+      },
+      {
+        "id": 3,
+        "task_name": "Read a book",
+        "completed": false
+      },
+      {
+        "id": 4,
+        "task_name": "Write a blog post",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-06T22:30:51.343339+00:00",
+    "method": "POST",
+    "path": "/tasks",
+    "status_code": 201,
+    "response": {
+      "id": 5,
+      "task_name": "Go Groceries",
+      "completed": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:31:12.528270+00:00",
+    "method": "GET",
+    "path": "/tasks/3",
+    "status_code": 200,
+    "response": {
+      "id": 3,
+      "task_name": "Read a book",
+      "completed": false
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:31:54.070018+00:00",
+    "method": "PUT",
+    "path": "/tasks/3",
+    "status_code": 200,
+    "response": {
+      "id": 3,
+      "task_name": "Read a book",
+      "completed": true
+    }
+  },
+  {
+    "timestamp": "2026-09-06T22:32:12.575903+00:00",
+    "method": "DELETE",
+    "path": "/tasks/1",
+    "status_code": 204,
+    "response": null
+  }
+]

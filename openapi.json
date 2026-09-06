@@ -1,0 +1,325 @@
+{
+	"openapi": "3.1.0",
+	"info": {
+		"title": "My CRUD API",
+		"version": "1.0.0"
+	},
+	"paths": {
+		"/health": {
+			"get": {
+				"summary": "Check Health",
+				"operationId": "check_health_health_get",
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks": {
+			"get": {
+				"summary": "List Tasks",
+				"operationId": "list_tasks_tasks_get",
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Task"
+									},
+									"type": "array",
+									"title": "Response List Tasks Tasks Get"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Create Task",
+				"operationId": "create_task_tasks_post",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskCreate"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"201": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Task"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks/{task_id}": {
+			"get": {
+				"summary": "Get Task",
+				"operationId": "get_task_tasks__task_id__get",
+				"parameters": [
+					{
+						"name": "task_id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"title": "Task Id"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Task"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"summary": "Update Task",
+				"operationId": "update_task_tasks__task_id__put",
+				"parameters": [
+					{
+						"name": "task_id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"title": "Task Id"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskUpdate"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Task"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Delete Task",
+				"operationId": "delete_task_tasks__task_id__delete",
+				"parameters": [
+					{
+						"name": "task_id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"title": "Task Id"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Successful Response"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"HTTPValidationError": {
+				"properties": {
+					"detail": {
+						"items": {
+							"$ref": "#/components/schemas/ValidationError"
+						},
+						"type": "array",
+						"title": "Detail"
+					}
+				},
+				"type": "object",
+				"title": "HTTPValidationError"
+			},
+			"Task": {
+				"properties": {
+					"id": {
+						"type": "integer",
+						"title": "Id"
+					},
+					"title": {
+						"type": "string",
+						"title": "Title"
+					},
+					"done": {
+						"type": "boolean",
+						"title": "Done",
+						"default": false
+					}
+				},
+				"type": "object",
+				"required": [
+					"id",
+					"title"
+				],
+				"title": "Task"
+			},
+			"TaskCreate": {
+				"properties": {
+					"title": {
+						"type": "string",
+						"title": "Title"
+					},
+					"done": {
+						"type": "boolean",
+						"title": "Done",
+						"default": false
+					}
+				},
+				"type": "object",
+				"required": [
+					"title"
+				],
+				"title": "TaskCreate"
+			},
+			"TaskUpdate": {
+				"properties": {
+					"title": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Title"
+					},
+					"done": {
+						"anyOf": [
+							{
+								"type": "boolean"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Done"
+					}
+				},
+				"type": "object",
+				"title": "TaskUpdate"
+			},
+			"ValidationError": {
+				"properties": {
+					"loc": {
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "integer"
+								}
+							]
+						},
+						"type": "array",
+						"title": "Location"
+					},
+					"msg": {
+						"type": "string",
+						"title": "Message"
+					},
+					"type": {
+						"type": "string",
+						"title": "Error Type"
+					},
+					"input": {
+						"title": "Input"
+					},
+					"ctx": {
+						"type": "object",
+						"title": "Context"
+					}
+				},
+				"type": "object",
+				"required": [
+					"loc",
+					"msg",
+					"type"
+				],
+				"title": "ValidationError"
+			}
+		}
+	}
+}
