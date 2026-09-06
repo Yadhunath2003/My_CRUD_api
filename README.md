@@ -64,3 +64,17 @@ Delete a task:
 ```bash
 curl -X DELETE http://127.0.0.1:8000/tasks/1
 ```
+
+Moreover, I had also propmted Github Copilot to Create a own CRUD api different from mine and it also does the work prefectly. Here is the Prompt that I used.
+
+```
+Please create a simple crud app using fastapi where you create 4 hardcoded tasks that contains and id (int), the task_name (str), and whether the task has been completed or not (bool). From these 4 tasks, you should be ablw to do the following tasks.
+
+1. Return a json string describing the api, and Check the Health of the api along with its status.
+2. able to list all the tasks, and a specific task.
+3. Create a new task.
+4. Update and Delete a task.
+5. And finally store all the api responses to .json file.
+
+Please make sure to isolate this api from the existing my_crud_api.py file (by creating a new file named crub_by_ai.py) and also import the responses to a different .json file. Finally, also create a README file containing all the information on what this API does.
+```
