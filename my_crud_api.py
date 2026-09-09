@@ -30,11 +30,18 @@ class TaskUpdate(BaseModel):
 # }
 # _next_id = max(tasks.keys()) + 1 if tasks else 1
 
+#Instead of using in-memory storage, we will use SQLite for persistent storage.
 def get_connection() -> sqlite.Connection:
     conn = sqlite.connect(DATABASE_PATH)
     conn.row_factory = sqlite.Row
     return conn
 
+'''
+Initiating the Database:
+- Creating the Table for all the fields on the Task model.
+- If the Data is already present, it will not insert the data again. 
+- If the table is empty, it will insert some initial data.
+'''
 def init_db() -> None:
     with get_connection() as conn:
         conn.execute(
@@ -48,21 +55,25 @@ def init_db() -> None:
         )
         (count,) = conn.execute("SELECT COUNT(*) FROM tasks").fetchone()
         if count == 0:
-            conn.execute(
+            conn.executemany(
                 "INSERT INTO tasks (title, done) VALUES (?, ?)",
                 [
                     ("Buy Milk", False),
-                    ("Walk the dogs", False),   
+                    ("Walk the dogs", False),
                     ("Read a book", False),
                     ("Write a blog post", False),
                 ],
-            )   
+            )
         conn.commit()
-        conn.close()
 
+# Helper function to convert a database row to a Task object
 def row_task(row: sqlite.Row) -> Task:
     return Task(id=row["id"], title=row["title"], done=bool(row["done"]))
 
+'''
+This is the function to select all the tasks from the database 
+and return them as a list of Task objects.
+'''
 def db_list_tasks() -> list[Task]:
     conn = get_connection()
     try:
@@ -71,6 +82,8 @@ def db_list_tasks() -> list[Task]:
     finally:
         conn.close()
 
+'''This Function would select a task by its ID from the database and
+ return it as a Task object.'''
 def db_get_task(task_id: int) -> Task | None:
     conn = get_connection()
     try:
@@ -83,6 +96,8 @@ def db_get_task(task_id: int) -> Task | None:
     finally:
         conn.close()
 
+'''This function would insert a new task into the database and 
+return it as a Task object.'''
 def db_create_task(task_create: TaskCreate) -> Task:
     conn = get_connection()
     try:
@@ -96,6 +111,10 @@ def db_create_task(task_create: TaskCreate) -> Task:
     finally:
         conn.close()
 
+'''
+This function would update an existing task in the database and
+return it as a Task object.
+'''
 def db_update_task(task_id: int, task_update: TaskUpdate) -> Task | None:
     conn = get_connection()
     try:
@@ -115,6 +134,8 @@ def db_update_task(task_id: int, task_update: TaskUpdate) -> Task | None:
     finally:
         conn.close()
 
+'''This function would delete a task from the database and 
+return a boolean indicating success.'''
 def db_delete_task(task_id: int) -> bool:
     conn = get_connection()
     try:
@@ -123,6 +144,8 @@ def db_delete_task(task_id: int) -> bool:
         return cursor.rowcount > 0
     finally:
         conn.close()
+
+########################################3
 
 def openapi_schema(path: str = OPENAPI_PATH) -> None:
     try:
@@ -134,12 +157,16 @@ def openapi_schema(path: str = OPENAPI_PATH) -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()
+    init_db() #Initialize the database when the application starts
     openapi_schema()
     yield
 
 app = FastAPI(title="My CRUD API", version="1.0.0", lifespan=lifespan)
 
+#-----------------------------------------------
+
+'''These are the same functions from the initial CRUD API implementation, 
+but now they interact with the SQLite database instead of in-memory storage.'''
 # Check the health of the API
 @app.get("/health")
 async def check_health():
